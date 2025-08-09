@@ -19,7 +19,7 @@ public class HotelController {
     private HotelService hotelService;
 
     @GetMapping("/{hotelId}")
-    @PreAuthorize("hasRole('TRAVELER') or hasRole('HOTEL_MANAGER') or hasRole('TRAVEL_AGENT') or hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('TRAVELER') or hasRole('HOTEL_MANAGER') or hasRole('TRAVEL_AGENT') or hasRole('ADMIN')")
     public ResponseEntity<Hotel> getHotelById(@PathVariable Long hotelId) {
         Optional<Hotel> hotel = hotelService.getHotelById(hotelId);
         return hotel.map(ResponseEntity::ok)
@@ -27,7 +27,7 @@ public class HotelController {
     }
 
     @GetMapping
-    @PreAuthorize("hasRole('TRAVELER') or hasRole('HOTEL_MANAGER') or hasRole('TRAVEL_AGENT') or hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('TRAVELER') or hasRole('HOTEL_MANAGER') or hasRole('TRAVEL_AGENT') or hasRole('ADMIN')")
     public ResponseEntity<List<Hotel>> getAllHotels() {
         List<Hotel> hotels = hotelService.getAllHotels();
         return ResponseEntity.ok(hotels);
