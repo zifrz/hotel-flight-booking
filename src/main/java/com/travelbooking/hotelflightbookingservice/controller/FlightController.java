@@ -19,7 +19,7 @@ public class FlightController {
     private FlightService flightService;
 
     @GetMapping("/{flightId}")
-    @PreAuthorize("hasRole('TRAVELER') or hasRole('HOTEL_MANAGER') or hasRole('TRAVEL_AGENT') or hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('TRAVELER') or hasRole('HOTEL_MANAGER') or hasRole('TRAVEL_AGENT') or hasRole('ADMIN')")
     public ResponseEntity<Flight> getFlightById(@PathVariable Long flightId) {
         Optional<Flight> flight = flightService.getFlightById(flightId);
         return flight.map(ResponseEntity::ok)
@@ -27,7 +27,7 @@ public class FlightController {
     }
 
     @GetMapping
-    @PreAuthorize("hasRole('TRAVELER') or hasRole('HOTEL_MANAGER') or hasRole('TRAVEL_AGENT') or hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('TRAVELER') or hasRole('HOTEL_MANAGER') or hasRole('TRAVEL_AGENT') or hasRole('ADMIN')")
     public ResponseEntity<List<Flight>> getAllFlights() {
         List<Flight> flights = flightService.getAllFlights();
         return ResponseEntity.ok(flights);
