@@ -43,4 +43,9 @@ public class HotelServiceImpl implements HotelService {
     public void deleteHotel(Long hotelId) {
         hotelRepository.deleteById(hotelId);
     }
+
+    @Override
+    public List<Hotel> getHotelsByLocation(String location) {
+        return hotelRepository.findByLocationIgnoreCase(location);
+    }
 }

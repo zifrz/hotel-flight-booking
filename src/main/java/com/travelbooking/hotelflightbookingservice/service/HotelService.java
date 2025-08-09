@@ -15,4 +15,6 @@ public interface HotelService {
     Hotel updateHotel(Long hotelId, Hotel hotel);
 
     void deleteHotel(Long hotelId);
+
+    List<Hotel> getHotelsByLocation(String location);
 }

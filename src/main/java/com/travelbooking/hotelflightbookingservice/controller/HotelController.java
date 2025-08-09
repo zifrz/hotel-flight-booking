@@ -53,4 +53,10 @@ public class HotelController {
         hotelService.deleteHotel(hotelId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Hotel>> searchHotelsByLocation(@RequestParam String location) {
+        List<Hotel> hotels = hotelService.getHotelsByLocation(location);
+        return ResponseEntity.ok(hotels);
+    }
 }

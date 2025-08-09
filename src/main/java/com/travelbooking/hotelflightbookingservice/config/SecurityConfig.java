@@ -2,6 +2,7 @@ package com.travelbooking.hotelflightbookingservice.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -24,8 +25,10 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/auth/**", "/api/hotels/**", "/api/flights/**").permitAll() // Allow public endpoints
-                .anyRequest().authenticated()
+                    .requestMatchers(HttpMethod.GET, "/api/hotels/**").permitAll()
+                    .requestMatchers(HttpMethod.GET, "/api/hotels/**").permitAll()
+                    .requestMatchers("/api/auth/**").permitAll() // Allow public endpoints
+                    // .anyRequest().authenticated()
             )
             .oauth2ResourceServer(oauth2 -> oauth2
                 .jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter))
