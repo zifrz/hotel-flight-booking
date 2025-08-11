@@ -28,7 +28,7 @@ public class SecurityConfig {
                     .requestMatchers(HttpMethod.GET, "/api/hotels/**").permitAll()  // Anyone can search for  hotels
                     .requestMatchers(HttpMethod.GET, "/api/flights/**").permitAll() // Anyone can search for  hotels
                     .requestMatchers("/api/auth/**").permitAll() // Allow public endpoints
-                    // .anyRequest().authenticated()
+                    .anyRequest().authenticated()
             )
             .oauth2ResourceServer(oauth2 -> oauth2
                 .jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter))
