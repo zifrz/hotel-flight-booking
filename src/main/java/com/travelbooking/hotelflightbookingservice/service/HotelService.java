@@ -16,5 +16,5 @@ public interface HotelService {
 
     void deleteHotel(Long hotelId);
 
-    List<Hotel> getHotelsByLocation(String location);
+    List<Hotel> searchHotels(String location, Double minRating, Double maxPrice, Integer minRooms);
 }
