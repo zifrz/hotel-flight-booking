@@ -1,6 +1,8 @@
 package com.travelbooking.hotelflightbookingservice.controller;
 
+import com.travelbooking.hotelflightbookingservice.dto.BookingDto;
 import com.travelbooking.hotelflightbookingservice.model.Booking;
+import com.travelbooking.hotelflightbookingservice.model.BookingType;
 import com.travelbooking.hotelflightbookingservice.service.BookingService;
 import com.travelbooking.hotelflightbookingservice.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,5 +60,17 @@ public class BookingController {
     public ResponseEntity<Void> deleteBooking(@PathVariable Long bookingId) {
         bookingService.deleteBooking(bookingId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @PostMapping("/hasBooked")
+    @PreAuthorize("hasRole('TRAVELER')")
+    public ResponseEntity<Boolean> hasBooked(@RequestBody BookingDto bookingDto) {
+        Booking booking = bookingService.getBookingByDetails(
+                bookingDto.getBookingId(),
+                bookingDto.getType(),
+                bookingDto.getItemId(),
+                bookingDto.getUserId());
+
+        return ResponseEntity.ok(booking != null);
     }
 }

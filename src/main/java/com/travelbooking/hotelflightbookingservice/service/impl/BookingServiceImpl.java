@@ -1,6 +1,7 @@
 package com.travelbooking.hotelflightbookingservice.service.impl;
 
 import com.travelbooking.hotelflightbookingservice.model.Booking;
+import com.travelbooking.hotelflightbookingservice.model.BookingType;
 import com.travelbooking.hotelflightbookingservice.repository.BookingRepository;
 import com.travelbooking.hotelflightbookingservice.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,5 +39,10 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public void deleteBooking(Long bookingId) {
         bookingRepository.deleteById(bookingId);
+    }
+
+    @Override
+    public Booking getBookingByDetails(Long bookingId, BookingType type, Long itemId, Long userId) {
+        return bookingRepository.findByBookingIdAndTypeAndItemIdAndUserId(bookingId, type, itemId, userId);
     }
 }
